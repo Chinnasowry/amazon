@@ -1,22 +1,28 @@
 import React from 'react';
 import './Product.css';
-import data from '../data';
 import { Link } from 'react-router-dom';
+import Card from 'react-bootstrap/Card';
+import Buttton from 'react-bootstrap/Button';
+import Rating from './Rating';
 
-function Product({src, name, price, slug}) {
+function Product({src, name, price, slug, data}) {
   return (
-    <div key={data[0].slug}>
+    <Card>
+    <div>
+
         <Link to={`/product/${slug}`}>
-          <img src={src} alt=''/>
+          <img className='card-img-top' src={src} alt=''/>
         </Link>
         <div className='product-info'>
           <Link to={`/product/${slug}`}>
-            <p>{name}</p>
+            <Card.Title>{name}</Card.Title>
           </Link>
-          <p><strong>${price}</strong></p>
-          <button>Add to cart</button>
+          <Card.Text>${price}</Card.Text>
+          <Buttton>Add to Cart</Buttton>
+          <Rating rating={data.rating} numReviews={data.numReviews} />
         </div>
     </div>
+    </Card>
   )
 }
 
